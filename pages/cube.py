@@ -102,7 +102,7 @@ def draw_2d_cube(List):
     figname =  "now_cube2D.png"
     plt.close(fig)
     #現在のパスに保存
-    fig.savefig("data/" + figname, transparent=True)
+    fig.savefig("" + figname, transparent=True)
     return fig
 
 #cube rotation definition
@@ -162,7 +162,7 @@ for face_name in list(moves.keys()):
     moves[face_name + '\''] = moves[face_name].apply_move(moves[face_name]).apply_move(moves[face_name])
     
     
-CSV_FILE = 'data/moves.csv'
+CSV_FILE = 'moves.csv'
 
 
 def cube(state):
@@ -195,7 +195,7 @@ def main():
     initial_str_state = read_last_state()
     draw_2d_cube(str_to_list(initial_str_state))
     image_placeholder = st.empty()
-    image_placeholder.image('data/now_cube2D.png')
+    image_placeholder.image('now_cube2D.png')
 
     for button_label in button_labels:
         if st.button(button_label):
@@ -204,7 +204,7 @@ def main():
             new_state = rotation_cube(current_str_state, move)
             update_csv(move, new_state)
             draw_2d_cube(str_to_list(new_state))
-            image_placeholder.image('data/now_cube2D.png')
+            image_placeholder.image('now_cube2D.png')
 
             if new_state == "0123456700000000":
                 solved_placeholder.markdown("<h1 style='text-align: left; color: red;'>Solved!</h1>", unsafe_allow_html=True)
@@ -216,7 +216,7 @@ def main():
             f.write('"moves","state"\n')
             f.write('"Initial","0123456700000000"\n')
         draw_2d_cube(str_to_list(read_last_state()))
-        image_placeholder.image('data/now_cube2D.png')
+        image_placeholder.image('now_cube2D.png')
 
 if __name__ == '__main__':
     main()
